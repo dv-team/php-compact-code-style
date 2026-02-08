@@ -70,7 +70,7 @@ Note: static members before instance members. Group related methods.
 
 - Namespace matches the folder structure, e.g. `PageWeaveCMS\Infrastructure\Rendering` for `src/Infrastructure/Rendering` (PSR-4).
 - `use` statements: alphabetically sorted, grouped (PHP built-in, vendor, project-internal), one block per group with a blank line between.
-- No leading backslashes in code (`\DateTimeInterface` -> `use DateTimeInterface`).
+- No leading backslashes in code. Always import and reference by short name (e.g., `\DateTimeInterface` becomes `use DateTimeInterface;`, and `\InvalidArgumentException` becomes `use InvalidArgumentException;`).
 
 ## Formatting and Syntax
 
@@ -147,6 +147,7 @@ Example (excerpt):
 
 namespace PageWeaveCMS\Infrastructure\Rendering;
 
+use InvalidArgumentException;
 use PageWeaveCMS\Domain\Entity\Page;
 use Twig\Environment as TwigEnvironment;
 
@@ -159,7 +160,7 @@ final class PageRenderer {
 		$loc = $locale ?? self::DEFAULT_LOCALE;
 		//Guard Clause
 		if($page->layoutId === '') {
-			throw new \InvalidArgumentException('Missing layout ID.');
+			throw new InvalidArgumentException('Missing layout ID.');
 		}
 
 		//...
