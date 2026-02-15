@@ -1,5 +1,6 @@
 {
 	"name": "dv-team/php-compact-code-style",
 	"description": "PHP Code Style Guidelines Meta Package",
-	"homepage": "https://github.com/dv-team/php-code-style"
+	"homepage": "https://github.com/dv-team/php-code-style",
+	"license": "MIT"
 }
