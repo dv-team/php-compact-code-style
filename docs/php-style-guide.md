@@ -33,6 +33,9 @@ This style guide is conceptually aligned with Java conventions (clear encapsulat
   - Interface Segregation: prefer small, focused interfaces over large catch-all interfaces.
   - Dependency Inversion: high-level logic depends on abstractions (interfaces), not concrete implementations.
 - Apply **DRY**: avoid repeated logic or structure; extract shared functionality (e.g., services/helpers) instead of copy-paste; required for new and refactoring work.
+- Readability matters: prefer code that is easy to scan and understand over code that is merely more explicit or verbose.
+- Vertical density matters within the established style rules: do not compress code by violating formatting rules or by collapsing control flow into line noise. Favor semantically dense code that fits more understandable logic into roughly one editor viewport (about 40 lines on a typical 1440p screen) without making it harder to scan.
+- Do not extract helper methods unless they are necessary for reuse, a real abstraction boundary, runtime safety, or a meaningful readability gain. Do not fragment local logic into tiny methods just to make a method shorter.
 
 ## Naming
 
@@ -99,7 +102,7 @@ Note: static members before instance members. Group related methods.
 - Strict types for parameters and return values; avoid `mixed`.
 - Nullable only when semantically required (`?Type`).
 - Optional parameters at the end; no boolean flag parameters (use specialized methods or options objects instead).
-- No "magic" implicit side effects; methods are small and single-purpose.
+- No "magic" implicit side effects; methods stay focused and single-purpose, but do not introduce extra helper methods without a concrete need.
 
 ## Control Flow
 
@@ -124,6 +127,7 @@ Note: static members before instance members. Group related methods.
 - Comments explain "why," not "what." The code explains the "what."
 - Use PHPDoc for public methods/classes with non-trivial logic, external contracts, or generic collections.
 - Use `@param`/`@return` for generic arrays/iterables and `@throws` for exceptions.
+- When the only goal is to express static-analysis knowledge, prefer precise annotations such as `@var`, `@phpstan-type`, and `@phpstan-import-type` over adding helper methods whose main purpose is to prove a type or array shape, as long as runtime safety is not weakened.
 - No redundant docblocks (e.g., when types are already clear from the signature).
 
 ## Tests and Examples (Brief)

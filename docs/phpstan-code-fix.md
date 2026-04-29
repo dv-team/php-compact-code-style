@@ -17,6 +17,8 @@
 
 - Use only comment annotations, no code changes (exception = php supported types). If that is not enough to solve the problem, then skip the issue at that point. 
 - Use `/** @var ... */` for example and also `@phpstan-type ...` as well as `@phpstan-import-type` to define types.
+- Prefer precise annotations over helper methods whose only purpose is to convince PHPStan about a type or structure.
+- Only introduce type-enforcing helper methods when they materially improve runtime safety. If runtime safety would not be weakened either way, prefer precise annotations instead.
   - If a type definition is appearing multiple times, try to consolidate it into a single definition.
 - Prefer to use actual types over comment annotations (like `: void` over `/** @return void */`). Do not use `@return` when it's just adressing a type also available in the minimum supported PHP version.
 - Prefer defining types where they first enter the project realm.
